@@ -39,6 +39,8 @@ public class GestionePrenotazione implements GestionePrenotazioneInterface{
     
     private Prenotazione prenota(String email,Long idPrenotazione){
         Donatore donatore = donatoreService.findByEmail(email);
+        donatoreService.isModuloCompilato(donatore);
+        donatoreService.isAbilitatoAdonare(donatore);
         Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
         return prenotazioneService.prenotaData(donatore, prenotazione);
     }

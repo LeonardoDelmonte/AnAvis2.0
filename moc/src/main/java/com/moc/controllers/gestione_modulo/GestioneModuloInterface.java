@@ -19,13 +19,13 @@ public interface GestioneModuloInterface {
     @GetMapping(value="/sedeAvis/ottieni-modulo-donatore")
     public ResponseEntity<InterfaceApi> ottieniModuloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente , @RequestBody String email);
 
-    @PutMapping(value="/sedeAvis/modifica-modulo-per-terzi")
+    @PutMapping(value="/sedeAvis/modifica-modulo-donatore")
     public ResponseEntity<InterfaceApi> modificaModuloPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody ModuloPerTerzi moduloPerTerziDto);
 
     @GetMapping(value="/donatore/gestione-modulo/ottieni-modulo")
     public ResponseEntity<InterfaceApi> ottieniModulo(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
     
-    @PutMapping(value="/donatore/gestione-modulo/modificare-modulo")
+    @PutMapping(value="/donatore/gestione-modulo/modifica-modulo")
     public ResponseEntity<InterfaceApi> modificareModulo(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody Modulo modulo);
     
 }

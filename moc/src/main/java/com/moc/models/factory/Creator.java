@@ -33,5 +33,5 @@ public abstract class Creator {
         System.out.println("ciao");
     }
 
-    abstract protected void setAutorizzazioni();
+    abstract protected void setAutorizzazioni(Utente utente);
 }

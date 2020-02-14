@@ -10,24 +10,22 @@ import com.moc.models.Utente;
  */
 public class CreatorDonatore extends Creator{
 
-    private Donatore donatore;
-
 	@Override
 	public Utente creaUtente(RegistrazioneDto registrazioneDto) {
-        donatore = registrazioneDto.getDonatore();
+        Donatore donatore = registrazioneDto.getDonatore();
         controllaInfoUtente(donatore);
-        setAutorizzazioni();
-        return this.builder();
+        setAutorizzazioni(donatore);
+        return this.builder(donatore);
     }
 
     @Override
-    protected void setAutorizzazioni() {
+    protected void setAutorizzazioni(Utente donatore) {
         Autorizzazioni autorizzazioni = new Autorizzazioni();
         autorizzazioni.autorizzazioniDonatore();
         donatore.setAutorizzazioni(autorizzazioni.getAutorizzazioni());
     }
 
-    private Utente builder(){
+    private Utente builder(Donatore donatore){
         //lascio il builder e non ritorno la variabile locale 
         //perchè cosi un json con qualcosa in più ad esempio un modulo già creato
         //non può passare
