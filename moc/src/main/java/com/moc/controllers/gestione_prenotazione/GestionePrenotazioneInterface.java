@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestionePrenotazioneInterface {
 
-    @PostMapping(value="/sedeAvis/prenota-per-terzi")
+    @PostMapping(value="/sedeAvis/prenota-per-donatore")
     public ResponseEntity<InterfaceApi> prenotaPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody PrenotazionePerTerziDto prenotazionePerTerziDto);
 
     @PostMapping(value="/donatore/gestione-date/prenota-data")

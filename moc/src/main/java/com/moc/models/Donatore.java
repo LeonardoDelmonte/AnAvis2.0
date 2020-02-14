@@ -14,7 +14,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.moc.models.Utente;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,17 +35,18 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("DONATORE")
 
-public class Donatore extends Utente{
+public class Donatore extends Utente{ 
 
-    //@OneToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name="shop_owned_id",nullable=true)
-    
     @Column@NotNull@NotBlank
     private String nome;
     @Column@NotNull@NotBlank
     private String cognome;
     @Column
-    private String citta;
+    private String citta,professione;
+    @Column
+    private int anni;
+    @Column
+    private Boolean abilitaDonazione;
 
     @OneToMany(mappedBy="idDonatore",fetch = FetchType.LAZY)
     private List<Prenotazione> listaPrenotazioni;
@@ -55,7 +55,5 @@ public class Donatore extends Utente{
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
 
-    @Column
-    private Boolean abilitaDonazione;
         
 }

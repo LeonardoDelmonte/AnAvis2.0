@@ -1,5 +1,7 @@
 package com.moc.services;
 import java.util.List;
+
+import com.moc.dto.DonatoreProfiloDto;
 import com.moc.models.Donatore;
 import com.moc.models.Modulo;
 import com.moc.models.Prenotazione;
@@ -9,11 +11,13 @@ import com.moc.models.Prenotazione;
  */
 public interface DonatoreInterface {
     
-    void modificaProfilo();
+    void modificaProfilo(Donatore donatore,DonatoreProfiloDto profilo);
     List<Prenotazione> ottieniPrenotazioni(Donatore donatore);
     Donatore findByEmail(String email);
 	void modificaModulo(Donatore donatore, Modulo modulo);
     Modulo ottieniModulo(Donatore donatore);
-    Boolean isAbilitatoAdonare(Donatore donatore);
+    void isAbilitatoAdonare(Donatore donatore);
+    void isModuloCompilato(Donatore donatore);
+	DonatoreProfiloDto ottieniProfilo(Donatore donatore);
 
 }

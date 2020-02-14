@@ -55,8 +55,8 @@ public class PrenotazioneService implements PrenotazioneInterface {
         if(donatore == null || prenotazione == null){
             throw new NullPointerException("argomenti non validi"); 
         }
-        if(donatore.getModulo()==null){
-            throw new NoSuchElementException("modulo non compilato");
+        if(!donatore.getAbilitaDonazione()){
+            throw new NoSuchElementException("non sei abilitato a donare, ultima donazione troppo recente!");
         }
         //check se null oppure rendi metodo syhncronized
         prenotazione.setIdDonatore(donatore);
