@@ -44,7 +44,8 @@ public class CentroTrasfusione extends Utente{
     private String provincia;
     @Column
     private String comune;
-    @OneToMany(mappedBy="idDonatore",fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy="idCentroTrasfusione",fetch = FetchType.LAZY)
     private List<Emergenza> listaEmergenze;
 
         

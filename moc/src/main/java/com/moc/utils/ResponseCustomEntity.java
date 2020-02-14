@@ -1,5 +1,7 @@
 package com.moc.utils;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,8 @@ public class ResponseCustomEntity<T> extends ApiResponse {
 
     public ResponseCustomEntity(T entity){
         this.entity = entity;
+        this.setMessage("ok");
+        this.setHttpStatus(HttpStatus.OK);
     }
 
 }

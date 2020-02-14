@@ -10,7 +10,7 @@ import com.moc.security.UtenteCorrente;
 import com.moc.services.DonatoreInterface;
 import com.moc.services.PrenotazioneInterface;
 import com.moc.utils.InterfaceApi;
-import com.moc.utils.ResponseList;
+import com.moc.utils.ResponseCustomEntity;
 import com.moc.utils.ResponseOK;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class GestioneDonatore implements GestioneDonatoreInterface {
     public ResponseEntity<InterfaceApi> ottieniDate(UtenteCorrente utenteCorrente) {
         Donatore donatore = donatoreService.findByEmail(utenteCorrente.getEmail());
         List<Prenotazione> list = donatoreService.ottieniPrenotazioni(donatore);
-        return new ResponseEntity<>(new ResponseList<Prenotazione>(list),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<Prenotazione>>(list),HttpStatus.OK);
     }
 
 
@@ -42,7 +42,7 @@ public class GestioneDonatore implements GestioneDonatoreInterface {
         Long idPrenotazione = Long.valueOf(req.getHeader("data"));
         Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
         prenotazioneService.cancellaPrenotazione(prenotazione);
-        return new ResponseEntity<>(new ResponseOK(),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("prenotazione annullata con successo"),HttpStatus.OK);
     }
 
 

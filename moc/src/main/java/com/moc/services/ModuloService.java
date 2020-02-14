@@ -25,8 +25,12 @@ public class ModuloService implements ModuloInterface{
     }
 
     @Override
-    public Modulo modificaModulo(Modulo modulo) {
+    public Modulo modificaModulo(Donatore donatore,Modulo modulo) {
+        if(donatore == null || modulo==null)
+            throw new NullPointerException("argomenti null");
+
         return moduloRepository.save(modulo);
+        
     }
     
 }

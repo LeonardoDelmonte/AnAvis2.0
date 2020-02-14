@@ -11,7 +11,6 @@ import com.moc.services.CentroTrasfusioneInterface;
 import com.moc.services.EmergenzaInterface;
 import com.moc.utils.InterfaceApi;
 import com.moc.utils.ResponseCustomEntity;
-import com.moc.utils.ResponseList;
 import com.moc.utils.ResponseOK;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class GestioneCentroTrasfusione implements GestioneCentroTrasfusioneInter
     public ResponseEntity<InterfaceApi> ottieniEmergenze(UtenteCorrente utenteCorrente) {
         CentroTrasfusione centro = centroService.findByEmail(utenteCorrente.getEmail());
         List<Emergenza> list = centroService.ottieniEmergenze(centro);
-        return new ResponseEntity<>(new ResponseList<Emergenza>(list),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<Emergenza>>(list),HttpStatus.OK);
     }
 
     @Override

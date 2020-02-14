@@ -23,14 +23,8 @@ public abstract class Creator {
     
     protected void controllaInfoUtente(Utente utente){
         //qualunque errore lancia un eccezione e non tornare indietro un null
-        //controlla se l apw rispetta i parametri
-        //encode the pw
-        utente.setPassword(passwordEncoder().encode(utente.getPassword()));
-        //controlla ruolo con un enum dei ruoli
-        //notNul notBlank controllato nella Entity
-        //se va tutto bene il metodo privato della subClass
-        //prende la variabile locale che ora è giusta      
-        System.out.println("ciao");
+        //controlla se la pw e l'email rispetta i parametri
+        utente.setPassword(passwordEncoder().encode(utente.getPassword()));  
     }
 
     abstract protected void setAutorizzazioni(Utente utente);

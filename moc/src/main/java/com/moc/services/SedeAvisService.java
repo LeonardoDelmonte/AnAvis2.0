@@ -22,11 +22,15 @@ public class SedeAvisService implements SedeAvisInterface {
 
     @Override
     public List<Prenotazione> ottieni(SedeAvis sedeAvis) {
+        if(sedeAvis==null)
+            throw new NullPointerException("sedeAvis NULL");
         return sedeAvis.getListaPrenotazioni();
     }
 
     @Override
     public SedeAvis findByEmail(String email) {
+        if(email==null)
+            throw new NullPointerException("email NULL");
         return sedeAvisRepository.findByEmail(email);
     }
 

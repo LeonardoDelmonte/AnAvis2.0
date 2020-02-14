@@ -14,7 +14,7 @@ import com.moc.security.UtenteCorrente;
 import com.moc.services.PrenotazioneInterface;
 import com.moc.services.SedeAvisInterface;
 import com.moc.utils.InterfaceApi;
-import com.moc.utils.ResponseList;
+import com.moc.utils.ResponseCustomEntity;
 import com.moc.utils.ResponseOK;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
 
         List<Prenotazione> list = sedeAvisService.ottieni(sedeAvis);
 
-        return new ResponseEntity<>(new ResponseList<Prenotazione>(list), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<Prenotazione>>(list), HttpStatus.OK);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
 
         list = prenotazioneService.salvaListaDate(list, sedeAvis);
 
-        return new ResponseEntity<>(new ResponseList<Timestamp>(list), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<Timestamp>>(list), HttpStatus.OK);
     }
 
     @Override

@@ -16,6 +16,9 @@ public class ControllaDate {
 
 	public List<Timestamp> formattaRangeDate(RangeDateDto rangeDto) {
 
+        if(rangeDto==null)
+            throw new NullPointerException("rangeDate NULL");
+
         List<Timestamp> list = new ArrayList<>();
 
         if(!compareTo(rangeDto))        

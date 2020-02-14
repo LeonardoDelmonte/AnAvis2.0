@@ -13,8 +13,8 @@ public class CreatorDonatore extends Creator{
 	@Override
 	public Utente creaUtente(RegistrazioneDto registrazioneDto) {
         Donatore donatore = registrazioneDto.getDonatore();
-        controllaInfoUtente(donatore);
-        setAutorizzazioni(donatore);
+        this.controllaInfoUtente(donatore);
+        this.setAutorizzazioni(donatore);
         return this.builder(donatore);
     }
 

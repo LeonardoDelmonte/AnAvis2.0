@@ -23,17 +23,22 @@ public class DonatoreService implements DonatoreInterface {
 
     @Override
     public List<Prenotazione> ottieniPrenotazioni(Donatore donatore) {
+        if(donatore==null)
+            throw new NullPointerException("donatore NULL");
         return donatore.getListaPrenotazioni();
     }
 
     @Override
     public Donatore findByEmail(String email) {
+        if(email==null)
+            throw new NullPointerException("email NULL");
         return donatoreRepository.findByEmail(email);
     }
 
     @Override
     public void modificaModulo(Donatore donatore, Modulo modulo) {
         if (donatore.getModulo() == null) {
+            //se da errore vedi nel modulo se cè il donatore != null
             donatore.setModulo(modulo);
             donatore.setAbilitaDonazione(true);
             donatoreRepository.save(donatore);
@@ -42,9 +47,12 @@ public class DonatoreService implements DonatoreInterface {
 
     @Override
     public Modulo ottieniModulo(Donatore donatore) {
+        //exception donatore null
+
         if (donatore.getModulo() == null) {
             return new Modulo();
         }
+
         return donatore.getModulo();
     }
 

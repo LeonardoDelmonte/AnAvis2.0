@@ -6,6 +6,6 @@ import com.moc.models.Modulo;
 public interface ModuloInterface {
 
     Modulo ottieniModulo(Donatore donatore);
-    Modulo modificaModulo(Modulo modulo);
+    Modulo modificaModulo(Donatore donatore, Modulo modulo);
 
 }

@@ -57,7 +57,7 @@ public class GestioneModulo implements GestioneModuloInterface {
 
     private void modificaModulo(String email,Modulo modulo){
         Donatore donatore = donatoreService.findByEmail(email);
-        Modulo moduloSaved = moduloService.modificaModulo(modulo);
+        Modulo moduloSaved = moduloService.modificaModulo(donatore , modulo);
         donatoreService.modificaModulo(donatore, moduloSaved);
     }
 
