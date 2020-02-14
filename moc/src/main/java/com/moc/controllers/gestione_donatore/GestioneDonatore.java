@@ -8,8 +8,11 @@ import com.moc.models.Donatore;
 import com.moc.models.Prenotazione;
 import com.moc.security.UtenteCorrente;
 import com.moc.services.DonatoreInterface;
+import com.moc.services.PrenotazioneInterface;
 import com.moc.utils.InterfaceApi;
 import com.moc.utils.ResponseList;
+import com.moc.utils.ResponseOK;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,8 @@ public class GestioneDonatore implements GestioneDonatoreInterface {
 
     @Autowired
     private DonatoreInterface donatoreService;
+    @Autowired
+    private PrenotazioneInterface prenotazioneService;
     
     @Override
     public ResponseEntity<InterfaceApi> ottieniDate(UtenteCorrente utenteCorrente) {
@@ -34,8 +39,10 @@ public class GestioneDonatore implements GestioneDonatoreInterface {
 
     @Override
     public ResponseEntity<InterfaceApi> eliminareData(UtenteCorrente utenteCorrente, HttpServletRequest req) {
-        // TODO Auto-generated method stub
-        return null;
+        Long idPrenotazione = Long.valueOf(req.getHeader("data"));
+        Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
+        prenotazioneService.cancellaPrenotazione(prenotazione);
+        return new ResponseEntity<>(new ResponseOK(),HttpStatus.OK);
     }
 
 

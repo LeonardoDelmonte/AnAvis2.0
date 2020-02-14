@@ -15,6 +15,8 @@ import com.moc.services.PrenotazioneInterface;
 import com.moc.services.SedeAvisInterface;
 import com.moc.utils.InterfaceApi;
 import com.moc.utils.ResponseList;
+import com.moc.utils.ResponseOK;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,10 +68,11 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
     }
 
     @Override
-    public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
-            HttpServletRequest req) {
-        // TODO Auto-generated method stub
-        return null;
+    public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,HttpServletRequest req) {
+        Long idPrenotazione = Long.valueOf(req.getHeader("data"));
+        Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
+        prenotazioneService.eliminaData(prenotazione);
+        return new ResponseEntity<>(new ResponseOK("data cancellata con successo"), HttpStatus.OK);
     }
 
 

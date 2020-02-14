@@ -17,4 +17,8 @@ public interface PrenotazioneInterface {
     Prenotazione findById(Long id);
 
     Prenotazione prenotaData(Donatore donatore,Prenotazione prenotazione);
+
+	void eliminaData(Prenotazione prenotazione);
+
+	void cancellaPrenotazione(Prenotazione prenotazione);
 }
