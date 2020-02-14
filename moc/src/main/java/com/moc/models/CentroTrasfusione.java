@@ -1,8 +1,13 @@
 package com.moc.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import com.moc.models.Utente;
 
 import lombok.AllArgsConstructor;
@@ -39,6 +44,8 @@ public class CentroTrasfusione extends Utente{
     private String provincia;
     @Column
     private String comune;
+    @OneToMany(mappedBy="idDonatore",fetch = FetchType.LAZY)
+    private List<Emergenza> listaEmergenze;
 
         
 }

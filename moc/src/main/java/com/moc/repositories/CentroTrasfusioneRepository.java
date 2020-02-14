@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CentroTrasfusioneRepository extends JpaRepository<CentroTrasfusione,Long>{
 
+	CentroTrasfusione findByEmail(String email);
     
 }
