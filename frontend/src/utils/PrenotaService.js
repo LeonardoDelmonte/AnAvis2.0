@@ -23,7 +23,7 @@ class PrenotaService {
     }
 
     async insert(dateDto) {
-        return await axiosInstance.post('/gestione-date/inserimento',dateDto)
+        return await axiosInstance.post('/sedeAvis/gestione-date/inserisci-data',dateDto)
     }
 
     async getDate(){

@@ -15,7 +15,7 @@ public interface RegistrazioneInterface {
     @PostMapping(value="/public/registrazione-utente")
     public ResponseEntity<InterfaceApi> registrazione(@RequestBody RegistrazioneDto registrazioneDto) throws NoSuchFieldException;
     
-    @PostMapping(value="/sedeAvis/registrazione-utente")
+    @PostMapping(value="/sede/registrazione-utente")
     public ResponseEntity<InterfaceApi> registrazioneDonatore(@RequestBody RegistrazioneDto registrazioneDto) throws NoSuchFieldException;
 
 }

@@ -3,6 +3,7 @@ package com.moc.services;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.moc.dto.RangeDateDto;
 import com.moc.models.Donatore;
 import com.moc.models.Prenotazione;
 import com.moc.models.SedeAvis;
@@ -21,4 +22,6 @@ public interface PrenotazioneInterface {
 	void eliminaData(Prenotazione prenotazione);
 
 	void cancellaPrenotazione(Prenotazione prenotazione);
+
+	List<Prenotazione> getDateLibere(SedeAvis sedeAvis, RangeDateDto rangeDateDto);
 }

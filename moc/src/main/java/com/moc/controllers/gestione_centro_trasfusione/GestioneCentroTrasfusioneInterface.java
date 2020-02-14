@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public interface GestioneCentroTrasfusioneInterface {
 
-    @GetMapping(value="/centroTrasfusione/ottieni-emergenze")
+    @GetMapping(value="/centro/ottieni-emergenze")
     public ResponseEntity<InterfaceApi> ottieniEmergenze(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @DeleteMapping(value="/centroTrasfusione/elimina-emergenze")
+    @DeleteMapping(value="/centro/elimina-emergenze")
     public ResponseEntity<InterfaceApi> eliminareEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente,HttpServletRequest req);
     
-    @PostMapping(value="/centroTrasfusione/inserisci-emergenze")
+    @PostMapping(value="/centro/inserisci-emergenze")
     public ResponseEntity<InterfaceApi> inserireEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente, @RequestBody String gruppo);
     
-    @GetMapping(value="/centroTrasfusione/conta-emergenze")
+    @GetMapping(value="/centro/conta-emergenze")
     public @ResponseBody ResponseEntity<InterfaceApi> contaEmergenze(@AuthenticationPrincipal UtenteCorrente utenteCorrente); 
 
 }

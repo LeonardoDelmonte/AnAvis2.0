@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestioneSedeAvisInterface {
 
-    @GetMapping(value="/sedeAvis/gestione-date/ottieni-date")
+    @GetMapping(value="/sede/gestione-date/ottieni-date")
     public ResponseEntity<InterfaceApi> ottieniDate(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @PostMapping(value="/sedeAvis/gestione-date/inserisci-data")
+    @PostMapping(value="/sede/gestione-date/inserisci-data")
     public ResponseEntity<InterfaceApi> inserireDateLibere(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody RangeDateDto inserimentoDto);
 
-    @PutMapping(value="/sedeAvis/gestione-date/modifica-data")
+    @PutMapping(value="/sede/gestione-date/modifica-data")
     public ResponseEntity<InterfaceApi> modificareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody Prenotazione prenotazione);
 
-    @DeleteMapping(value="/sedeAvis/gestione-date/elimina-data")
+    @DeleteMapping(value="/sede/gestione-date/elimina-data")
     public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,HttpServletRequest req);
     
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.moc.dto.RangeDateDto;
+import com.moc.models.Prenotazione;
+
 import org.springframework.stereotype.Component;
 
 
@@ -48,5 +50,6 @@ public class ControllaDate {
             return false;
         return true;
     }
+
     
 }

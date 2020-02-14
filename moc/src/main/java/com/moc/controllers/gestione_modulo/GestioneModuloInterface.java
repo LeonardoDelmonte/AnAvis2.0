@@ -8,6 +8,7 @@ import com.moc.utils.InterfaceApi;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestioneModuloInterface {
 
-    @GetMapping(value="/sedeAvis/ottieni-modulo-donatore")
-    public ResponseEntity<InterfaceApi> ottieniModuloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente , @RequestBody String email);
+    @GetMapping(value="/sede/ottieni-modulo-donatore")
+    public ResponseEntity<InterfaceApi> ottieniModuloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente , @PathVariable String email);
 
-    @PutMapping(value="/sedeAvis/modifica-modulo-donatore")
+    @PutMapping(value="/sede/modifica-modulo-donatore")
     public ResponseEntity<InterfaceApi> modificaModuloPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody ModuloPerTerzi moduloPerTerziDto);
 
     @GetMapping(value="/donatore/gestione-modulo/ottieni-modulo")

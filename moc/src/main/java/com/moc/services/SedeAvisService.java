@@ -1,7 +1,12 @@
 package com.moc.services;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import com.moc.dto.RangeDateDto;
 import com.moc.dto.SedeAvisProfiloDto;
 import com.moc.models.Prenotazione;
 import com.moc.models.SedeAvis;
@@ -61,6 +66,33 @@ public class SedeAvisService implements SedeAvisInterface {
         ModelMapper mapper = new ModelMapper();
         SedeAvisProfiloDto profilo = mapper.map(sedeAvis,SedeAvisProfiloDto.class);
         return profilo;
+    }
+
+    @Override
+    public Set<String> getAllRegioni() {
+        Set<String> string = new HashSet<>();
+        sedeAvisRepository.findAll().stream().forEach(e -> string.add(e.getRegione()));
+        return string;
+    }
+
+    @Override
+    public Set<String> getAllProvincie(String regione) {
+        Set<String> string = new HashSet<>();
+        List<SedeAvis> listasedi = sedeAvisRepository.findByRegione(regione);
+        if (listasedi.isEmpty()) 
+            return string;
+        listasedi.forEach(e -> string.add(e.getProvincia()));
+        return string;
+    }
+
+    @Override
+    public Set<String> getAllComuni(String provincia) {
+        Set<String> string = new HashSet<>();
+        List<SedeAvis> listasedi = sedeAvisRepository.findByProvincia(provincia);
+        if (listasedi.isEmpty()) 
+            return string;
+        listasedi.forEach(e -> string.add(e.getComune()));
+        return string;
     }
     
 }

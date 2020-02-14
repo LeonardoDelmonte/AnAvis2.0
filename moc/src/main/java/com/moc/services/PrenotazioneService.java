@@ -5,7 +5,9 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
+import com.moc.dto.RangeDateDto;
 import com.moc.models.Donatore;
 import com.moc.models.Prenotazione;
 import com.moc.models.SedeAvis;
@@ -32,7 +34,8 @@ public class PrenotazioneService implements PrenotazioneInterface {
         return inserisciDataLibera(sedeAvis, list);
     }
 
-    // ritorna la lista con le date inserite oppure ritorniamo una mappa di ok e error dopo vedemo
+    // ritorna la lista con le date inserite oppure ritorniamo una mappa di ok e
+    // error dopo vedemo
     private List<Timestamp> inserisciDataLibera(SedeAvis sedeAvis, List<Timestamp> listTimestamp) {
         for (int i = 0; i < listTimestamp.size(); i++) {
             try {
@@ -47,20 +50,20 @@ public class PrenotazioneService implements PrenotazioneInterface {
 
     @Override
     public Prenotazione findById(Long id) {
-        if(id==null)
+        if (id == null)
             throw new NullPointerException("id NULL");
         return prenotazioneRepository.findById(id).get();
     }
 
     @Override
     public Prenotazione prenotaData(Donatore donatore, Prenotazione prenotazione) {
-        if(donatore == null || prenotazione == null){
-            throw new NullPointerException("argomenti non validi"); 
+        if (donatore == null || prenotazione == null) {
+            throw new NullPointerException("argomenti non validi");
         }
-        if(!donatore.getAbilitaDonazione()){
+        if (!donatore.getAbilitaDonazione()) {
             throw new NoSuchElementException("non sei abilitato a donare, ultima donazione troppo recente!");
         }
-        //check se null oppure rendi metodo syhncronized
+        // check se null oppure rendi metodo syhncronized
         prenotazione.setIdDonatore(donatore);
         prenotazioneRepository.save(prenotazione);
         return prenotazione;
@@ -68,29 +71,38 @@ public class PrenotazioneService implements PrenotazioneInterface {
 
     @Override
     public void eliminaData(Prenotazione prenotazione) {
-        if(prenotazione==null)
+        if (prenotazione == null)
             throw new NullPointerException("prenotazione NULL");
 
-        if(prenotazione.getIdDonatore()!=null){
-           //manda una mail al donatore per comunicare la cancellazione della data
+        if (prenotazione.getIdDonatore() != null) {
+            // manda una mail al donatore per comunicare la cancellazione della data
         }
-        
-        prenotazioneRepository.delete(prenotazione);       
+
+        prenotazioneRepository.delete(prenotazione);
     }
 
     @Override
     public void cancellaPrenotazione(Prenotazione prenotazione) {
-        if(prenotazione.getIdDonatore()==null)
+        if (prenotazione.getIdDonatore() == null)
             throw new NoSuchElementException("la data è già libera");
         checkDate(prenotazione);
         prenotazione.setIdDonatore(null);
         prenotazioneRepository.save(prenotazione);
     }
 
-    private void checkDate(Prenotazione prenotazione){        
-        if(new Date().getTime() > prenotazione.getDate().getTime()){
+    private void checkDate(Prenotazione prenotazione) {
+        if (new Date().getTime() > prenotazione.getDate().getTime()) {
             throw new InvalidParameterException("la donazione è già stata effettuata, non si può eliminare");
         }
+    }
+
+    @Override
+    public List<Prenotazione> getDateLibere(SedeAvis sedeAvis, RangeDateDto dto) {
+        
+        List<Prenotazione> dateLibere = prenotazioneRepository.findByIdSedeAvisAndDateBetween(
+            sedeAvis,dto.getDataIniziale(), dto.getDataFinale());
+
+        return dateLibere.stream().filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
     }
 
     

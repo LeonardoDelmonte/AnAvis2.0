@@ -18,9 +18,11 @@ public class Autorizzazioni {
 
     public void autorizzazioniDonatore(){
         this.autorizzazioni.add(new SimpleGrantedAuthority("donatore"));
+        this.autorizzazioni.add(new SimpleGrantedAuthority("prenotazione"));
     }
     public void autorizzazioniSedeAvis(){
         this.autorizzazioni.add(new SimpleGrantedAuthority("sedeAvis"));
+        this.autorizzazioni.add(new SimpleGrantedAuthority("prenotazione"));
     }
     public void autorizzazioniCentroTrasfusione(){
         this.autorizzazioni.add(new SimpleGrantedAuthority("centroTrasfusione"));
