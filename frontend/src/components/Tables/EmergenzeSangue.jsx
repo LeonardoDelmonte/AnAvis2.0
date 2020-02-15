@@ -43,14 +43,14 @@ class EmergenzeSangue extends Component {
     getEmergency = () =>{
         GestioneCentroTrasfusione.getEmergency()
             .then(response => {
-                response.data.list.forEach(
+                response.data.entity.forEach(
                     (x) => {
                         const myDate = new Date(x.dataEmergenza);
                         x["dataEmergenza"] = dateToString(myDate)
                     }
                 )
                 this.setState({
-                    emergenze: response.data.list
+                    emergenze: response.data.entity
                 });
             })
     }

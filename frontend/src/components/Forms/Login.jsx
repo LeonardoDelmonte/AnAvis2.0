@@ -51,6 +51,7 @@ class Login extends Component {
                     ShowSimpleAlert('Errore del server, contattare l\'amministratore. ')
                 }
                 else {
+                    console.log(error.response)
                     ShowSimpleAlert(error.response.data.message)
                 }
             })

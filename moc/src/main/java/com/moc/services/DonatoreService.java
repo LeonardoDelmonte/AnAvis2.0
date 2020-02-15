@@ -90,6 +90,12 @@ public class DonatoreService implements DonatoreInterface {
             throw new NoSuchElementException("non abilitato a donare, modulo non compilato!");
     }
 
+    @Override
+    public void setAbilitazioneFalse(Donatore donatore) {
+        donatore.setAbilitaDonazione(false);
+        donatoreRepository.save(donatore);
+    }
+
     
     
 }

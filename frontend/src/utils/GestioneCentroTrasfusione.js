@@ -3,7 +3,8 @@ import axiosInstance from './interceptor'
 class GestioneCentroTrasfusione {
 
     async inviaEmergenza(gruppoSanguigno) {
-        return await axiosInstance.post('/centro/inserisci-emergenze',gruppoSanguigno)
+        return await axiosInstance.post('/centro/inserisci-emergenze',gruppoSanguigno, {
+            headers: { "Content-Type": "application/json" }})
     }
 
     async getEmergency(){

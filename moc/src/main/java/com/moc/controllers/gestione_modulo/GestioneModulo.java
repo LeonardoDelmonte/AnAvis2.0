@@ -38,26 +38,27 @@ public class GestioneModulo implements GestioneModuloInterface {
         return new ResponseEntity<>(new ResponseCustomEntity<Modulo>(modulo), HttpStatus.OK);
     }
 
-    private Modulo getModulo(String email){
+    private Modulo getModulo(String email) {
         Donatore donatore = donatoreService.findByEmail(email);
-        return donatoreService.ottieniModulo(donatore);   
+        return donatoreService.ottieniModulo(donatore);
     }
 
     @Override
-    public ResponseEntity<InterfaceApi> modificaModuloPerTerzi(UtenteCorrente utenteCorrente,ModuloPerTerzi moduloPerTerziDto) {
+    public ResponseEntity<InterfaceApi> modificaModuloPerTerzi(UtenteCorrente utenteCorrente,
+            ModuloPerTerzi moduloPerTerziDto) {
         modificaModulo(moduloPerTerziDto.getEmail(), moduloPerTerziDto.getModulo());
-        return new ResponseEntity<>(new ResponseOK("modulo modificato con successo"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Modulo modificato con successo"), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> modificareModulo(UtenteCorrente utenteCorrente, Modulo modulo) {
         modificaModulo(utenteCorrente.getEmail(), modulo);
-        return new ResponseEntity<>(new ResponseOK("modulo modificato con successo"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Modulo modificato con successo"), HttpStatus.OK);
     }
 
-    private void modificaModulo(String email,Modulo modulo){
+    private void modificaModulo(String email, Modulo modulo) {
         Donatore donatore = donatoreService.findByEmail(email);
-        Modulo moduloSaved = moduloService.modificaModulo(donatore , modulo);
+        Modulo moduloSaved = moduloService.modificaModulo(donatore, modulo);
         donatoreService.modificaModulo(donatore, moduloSaved);
     }
 

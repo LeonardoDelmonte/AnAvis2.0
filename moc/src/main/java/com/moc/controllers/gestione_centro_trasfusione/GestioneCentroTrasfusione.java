@@ -41,14 +41,14 @@ public class GestioneCentroTrasfusione implements GestioneCentroTrasfusioneInter
         Long idEmergenza = Long.valueOf(req.getHeader("data"));
         Emergenza emergenza = emergenzaService.findById(idEmergenza);
         emergenzaService.cancellaEmergenza(emergenza);
-        return new ResponseEntity<>(new ResponseOK(),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Emergenza eliminata correttamente"),HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> inserireEmergenza(UtenteCorrente utenteCorrente, String gruppo) {
         CentroTrasfusione centro = centroService.findByEmail(utenteCorrente.getEmail());
         emergenzaService.inserireEmergenza(gruppo,centro);
-        return new ResponseEntity<>(new ResponseOK(),HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponseOK("Emergenza inserita correttamente"),HttpStatus.CREATED);
     }
 
     @Override

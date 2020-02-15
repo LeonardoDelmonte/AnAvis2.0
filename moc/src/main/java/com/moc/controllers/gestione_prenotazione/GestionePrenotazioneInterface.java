@@ -17,22 +17,27 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestionePrenotazioneInterface {
 
-    @PostMapping(value="/sede/prenota-per-donatore")
-    public ResponseEntity<InterfaceApi> prenotaPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody PrenotazionePerTerziDto prenotazionePerTerziDto);
+    @PostMapping(value = "/sede/prenota-per-donatore")
+    public ResponseEntity<InterfaceApi> prenotaPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @RequestBody PrenotazionePerTerziDto prenotazionePerTerziDto);
 
-    @PostMapping(value="/donatore/prenota-data")
-    public ResponseEntity<InterfaceApi> prenotaData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody Long idPrenotazione);
+    @PostMapping(value = "/donatore/prenota-data")
+    public ResponseEntity<InterfaceApi> prenotaData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @RequestBody Long idPrenotazione);
 
-    @PostMapping(value="/prenotazione/ottieni-date-libere")
-    public ResponseEntity<InterfaceApi> ottieniDateLibere(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody DtoCercaDateLibere dto);
+    @PostMapping(value = "/prenotazione/ottieni-date-libere")
+    public ResponseEntity<InterfaceApi> ottieniDateLibere(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @RequestBody DtoCercaDateLibere dto);
 
-    @GetMapping(value="/prenotazione/ottieni-regioni")
+    @GetMapping(value = "/prenotazione/ottieni-regioni")
     public ResponseEntity<InterfaceApi> ottieniRegioni(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @GetMapping(value="/prenotazione/ottieni-provincie/{string}")
-    public ResponseEntity<InterfaceApi> ottieniProvincie(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@PathVariable String string);
+    @GetMapping(value = "/prenotazione/ottieni-provincie/{string}")
+    public ResponseEntity<InterfaceApi> ottieniProvincie(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @PathVariable String string);
 
-    @GetMapping(value="/prenotazione/ottieni-comuni/{string}")
-    public ResponseEntity<InterfaceApi> ottieniComuni(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@PathVariable String string);
+    @GetMapping(value = "/prenotazione/ottieni-comuni/{string}")
+    public ResponseEntity<InterfaceApi> ottieniComuni(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @PathVariable String string);
 
 }

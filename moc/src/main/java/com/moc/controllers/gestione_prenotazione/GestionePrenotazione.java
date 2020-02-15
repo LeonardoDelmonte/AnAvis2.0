@@ -40,13 +40,13 @@ public class GestionePrenotazione implements GestionePrenotazioneInterface {
     @Override
     public ResponseEntity<InterfaceApi> prenotaPerTerzi(UtenteCorrente utenteCorrente, PrenotazionePerTerziDto dto) {
         prenota(dto.getEmail(), dto.getIdPrenotazione());
-        return new ResponseEntity<>(new ResponseOK("prenotazione effettuata"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Prenotazione effettuata"), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> prenotaData(UtenteCorrente utenteCorrente, Long idPrenotazione) {
         prenota(utenteCorrente.getEmail(), idPrenotazione);
-        return new ResponseEntity<>(new ResponseOK("prenotazione effettuata"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Prenotazione effettuata"), HttpStatus.OK);
     }
 
     private Prenotazione prenota(String email, Long idPrenotazione) {
@@ -54,15 +54,17 @@ public class GestionePrenotazione implements GestionePrenotazioneInterface {
         donatoreService.isModuloCompilato(donatore);
         donatoreService.isAbilitatoAdonare(donatore);
         Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
-        return prenotazioneService.prenotaData(donatore, prenotazione);
+        prenotazione = prenotazioneService.prenotaData(donatore, prenotazione);
+        donatoreService.setAbilitazioneFalse(donatore);
+        return prenotazione;
     }
 
     @Override
     public ResponseEntity<InterfaceApi> ottieniDateLibere(UtenteCorrente utenteCorrente, DtoCercaDateLibere dto) {
         SedeAvis sedeAvis = sedeAvisService.findByComune(dto.getComune());
-        if(!controllaDate.controllaCorrettezzaDate(dto.getRangeDateDto()))
-            throw new IllegalArgumentException("date inserite non valide");
-        List<Prenotazione> list = prenotazioneService.getDateLibere(sedeAvis,dto.getRangeDateDto());
+        if (!controllaDate.controllaCorrettezzaDate(dto.getRangeDateDto()))
+            throw new IllegalArgumentException("Date inserite non valide");
+        List<Prenotazione> list = prenotazioneService.getDateLibere(sedeAvis, dto.getRangeDateDto());
         return new ResponseEntity<>(new ResponseCustomEntity<List<Prenotazione>>(list), HttpStatus.OK);
     }
 
@@ -74,16 +76,14 @@ public class GestionePrenotazione implements GestionePrenotazioneInterface {
 
     @Override
     public ResponseEntity<InterfaceApi> ottieniProvincie(UtenteCorrente utenteCorrente, String string) {
-        Set<String> set = sedeAvisService.getAllProvincie(string);
+        Set<String> set = sedeAvisService.getAllProvince(string);
         return new ResponseEntity<>(new ResponseCustomEntity<Set<String>>(set), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> ottieniComuni(UtenteCorrente utenteCorrente, String string) {
-        Set<String> set = sedeAvisService.getAllComuni(string);
+        Set<String> set = sedeAvisService.getComune(string);
         return new ResponseEntity<>(new ResponseCustomEntity<Set<String>>(set), HttpStatus.OK);
     }
-    
-    
 
 }

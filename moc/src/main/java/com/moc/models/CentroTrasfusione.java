@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.moc.models.Utente;
 
 import lombok.AllArgsConstructor;
@@ -37,11 +38,12 @@ public class CentroTrasfusione extends Utente{
     //@JoinColumn(name="shop_owned_id",nullable=true)
     
     @Column
-    private String direttore,indirizzo,telefono;
+    private String direttore,indirizzo,ospedale;
     @Column
     private String regione,provincia,comune;
 
     @OneToMany(mappedBy="idCentroTrasfusione",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"idCentroTrasfusione"})
     private List<Emergenza> listaEmergenze;
 
         

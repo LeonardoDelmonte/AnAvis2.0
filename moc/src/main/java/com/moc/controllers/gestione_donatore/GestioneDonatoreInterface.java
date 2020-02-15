@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 public interface GestioneDonatoreInterface {
 
-    @GetMapping(value="/donatore/gestione-date/ottieni-date")
+    @GetMapping(value = "/donatore/gestione-date/ottieni-date")
     public ResponseEntity<InterfaceApi> ottieniDate(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @DeleteMapping(value="/donatore/gestione-date/eliminare-data")
-    public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,HttpServletRequest req);
- 
-       
+    @DeleteMapping(value = "/donatore/gestione-date/eliminare-data")
+    public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            HttpServletRequest req);
+
 }
