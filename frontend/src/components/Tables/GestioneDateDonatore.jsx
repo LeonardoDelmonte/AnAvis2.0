@@ -15,7 +15,7 @@ const columns = memoize(clickHandler => [
     },
     {
         name: 'Email Donatore',
-        selector: 'idDonatore.email',
+        selector: 'email',
         sortable: true,
     },
     {

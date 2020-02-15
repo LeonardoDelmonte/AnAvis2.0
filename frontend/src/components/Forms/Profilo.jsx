@@ -60,9 +60,10 @@ class Profilo extends Component {
                     ShowSimpleAlert(error.response.data.message)
                 });
         }
+        this.loadProfilo()
     };
 
-    componentDidMount() {
+    loadProfilo = () => {
         if(isDonatore()){
             ProfiloService.loadProfiloDonatore()
             .then(response => {
@@ -90,6 +91,10 @@ class Profilo extends Component {
                 console.log("nessuna risposta dal server");
             });
         }
+    }
+
+    componentDidMount() {
+        this.loadProfilo()
         
     }
 
@@ -98,12 +103,13 @@ class Profilo extends Component {
         return (
             <form onSubmit={this.handleSubmit} id="ProfiloForm">
                 <h3>DATI BASE</h3>
-                {isDonatore() && this.state.fields.abilitazioneDonazione === 0 &&
+                {console.log(this.state.fields)}
+                {isDonatore() && !this.state.fields.abilitaDonazione &&
                     <div className="alert alert-info">
                         <strong>Info!</strong>Non sei abilitato a donare
                     </div>
                 }
-                {isDonatore() && this.state.fields.abilitazioneDonazione === 1 &&
+                {isDonatore() && this.state.fields.abilitaDonazione &&
                     <div className="alert alert-info">
                         <strong>Info!</strong> Sei abilitato a donare
                     </div>

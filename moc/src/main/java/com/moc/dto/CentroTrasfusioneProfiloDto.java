@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class CentroTrasfusioneProfiloDto {
 
-    private String indirizzo,telefono,direttore,email;
+    private String indirizzo,telefono,direttore,email,ospedale;
 
     private String regione,provincia,comune;
 

@@ -36,30 +36,32 @@ public class GestioneProfilo implements GestioneProfiloInterface {
     public ResponseEntity<InterfaceApi> modificareProfiloDonatore(UtenteCorrente utenteCorrente,
             DonatoreProfiloDto profilo) {
         Donatore donatore = donatoreService.findByEmail(utenteCorrente.getEmail());
-        donatoreService.modificaProfilo(donatore,profilo);
-        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"),HttpStatus.OK);
+        donatoreService.modificaProfilo(donatore, profilo);
+        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> modificareProfiloSedeAvis(UtenteCorrente utenteCorrente,
             SedeAvisProfiloDto profilo) {
         SedeAvis sedeAvis = sedeAvisService.findByEmail(utenteCorrente.getEmail());
-        sedeAvisService.modificaProfilo(sedeAvis,profilo);
-        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"),HttpStatus.OK);
+        sedeAvisService.modificaProfilo(sedeAvis, profilo);
+        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> modificareProfiloCentroTrasfusione(UtenteCorrente utenteCorrente,
             CentroTrasfusioneProfiloDto profilo) {
         CentroTrasfusione centro = centroTrasfusioneService.findByEmail(utenteCorrente.getEmail());
-        centroTrasfusioneService.modificaProfilo(centro,profilo);
-        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"),HttpStatus.OK);
+        centroTrasfusioneService.modificaProfilo(centro, profilo);
+        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<InterfaceApi> ottenereProfiloDonatore(UtenteCorrente utenteCorrente) {
         Donatore donatore = donatoreService.findByEmail(utenteCorrente.getEmail());
-        donatoreService.isAbilitatoAdonare(donatore);
+        if (donatore.getModulo() != null) {
+            donatoreService.isAbilitatoAdonare(donatore);
+        }
         DonatoreProfiloDto profilo = donatoreService.ottieniProfilo(donatore);
         return new ResponseEntity<>(new ResponseCustomEntity<DonatoreProfiloDto>(profilo), HttpStatus.OK);
     }
@@ -78,5 +80,4 @@ public class GestioneProfilo implements GestioneProfiloInterface {
         return new ResponseEntity<>(new ResponseCustomEntity<CentroTrasfusioneProfiloDto>(profilo), HttpStatus.OK);
     }
 
-    
 }
