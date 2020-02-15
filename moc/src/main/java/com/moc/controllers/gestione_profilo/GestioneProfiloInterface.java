@@ -17,22 +17,26 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestioneProfiloInterface {
 
-    @PutMapping(value="/donatore/gestione-profilo/modifica-profilo")
-    public ResponseEntity<InterfaceApi> modificareProfiloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente , @RequestBody DonatoreProfiloDto profilo);
+    @PutMapping(value = "/donatore/gestione-profilo/modifica-profilo")
+    public ResponseEntity<InterfaceApi> modificareProfiloDonatore(
+            @AuthenticationPrincipal UtenteCorrente utenteCorrente, @RequestBody DonatoreProfiloDto profilo);
 
-    @PutMapping(value="/sede/gestione-profilo/modifica-profilo")
-    public ResponseEntity<InterfaceApi> modificareProfiloSedeAvis(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody SedeAvisProfiloDto profilo);
+    @PutMapping(value = "/sede/gestione-profilo/modifica-profilo")
+    public ResponseEntity<InterfaceApi> modificareProfiloSedeAvis(
+            @AuthenticationPrincipal UtenteCorrente utenteCorrente, @RequestBody SedeAvisProfiloDto profilo);
 
-    @PutMapping(value="/centro/gestione-profilo/modifica-profilo")
-    public ResponseEntity<InterfaceApi> modificareProfiloCentroTrasfusione(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody CentroTrasfusioneProfiloDto profilo);
+    @PutMapping(value = "/centro/gestione-profilo/modifica-profilo")
+    public ResponseEntity<InterfaceApi> modificareProfiloCentroTrasfusione(
+            @AuthenticationPrincipal UtenteCorrente utenteCorrente, @RequestBody CentroTrasfusioneProfiloDto profilo);
 
-    @GetMapping(value="/donatore/gestione-profilo/ottieni-profilo")
+    @GetMapping(value = "/donatore/gestione-profilo/ottieni-profilo")
     public ResponseEntity<InterfaceApi> ottenereProfiloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @GetMapping(value="/sede/gestione-profilo/ottieni-profilo")
+    @GetMapping(value = "/sede/gestione-profilo/ottieni-profilo")
     public ResponseEntity<InterfaceApi> ottenereProfiloSedeAvis(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @GetMapping(value="/centro/gestione-profilo/ottieni-profilo")
-    public ResponseEntity<InterfaceApi> ottenereProfiloCentroTrasfusione(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
+    @GetMapping(value = "/centro/gestione-profilo/ottieni-profilo")
+    public ResponseEntity<InterfaceApi> ottenereProfiloCentroTrasfusione(
+            @AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
 }

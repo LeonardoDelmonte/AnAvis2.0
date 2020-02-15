@@ -28,23 +28,20 @@ public class GestioneDonatore implements GestioneDonatoreInterface {
     private DonatoreInterface donatoreService;
     @Autowired
     private PrenotazioneInterface prenotazioneService;
-    
+
     @Override
     public ResponseEntity<InterfaceApi> ottieniDate(UtenteCorrente utenteCorrente) {
         Donatore donatore = donatoreService.findByEmail(utenteCorrente.getEmail());
         List<Prenotazione> list = donatoreService.ottieniPrenotazioni(donatore);
-        return new ResponseEntity<>(new ResponseCustomEntity<List<Prenotazione>>(list),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<List<Prenotazione>>(list), HttpStatus.OK);
     }
-
 
     @Override
     public ResponseEntity<InterfaceApi> eliminareData(UtenteCorrente utenteCorrente, HttpServletRequest req) {
         Long idPrenotazione = Long.valueOf(req.getHeader("data"));
         Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
         prenotazioneService.cancellaPrenotazione(prenotazione);
-        return new ResponseEntity<>(new ResponseOK("prenotazione annullata con successo"),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Prenotazione annullata con successo"), HttpStatus.OK);
     }
 
-
-    
 }

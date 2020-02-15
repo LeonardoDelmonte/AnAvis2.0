@@ -44,9 +44,9 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
 
         SedeAvis sedeAvis = sedeAvisService.findByEmail(utenteCorrente.getEmail());
 
-        Map<String,List<Prenotazione>> map = sedeAvisService.ottieni(sedeAvis);
+        Map<String, List<Prenotazione>> map = sedeAvisService.ottieni(sedeAvis);
 
-        return new ResponseEntity<>(new ResponseCustomEntity<Map<String,List<Prenotazione>>>(map), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<Map<String, List<Prenotazione>>>(map), HttpStatus.OK);
     }
 
     @Override
@@ -57,9 +57,9 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
 
         List<Timestamp> list = controllaDate.formattaRangeDate(rangeDateDto);
 
-        Map<String,List<Timestamp>> map = prenotazioneService.salvaListaDate(list, sedeAvis);
+        Map<String, List<Timestamp>> map = prenotazioneService.salvaListaDate(list, sedeAvis);
 
-        return new ResponseEntity<>(new ResponseCustomEntity<Map<String,List<Timestamp>>>(map), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<Map<String, List<Timestamp>>>(map), HttpStatus.OK);
     }
 
     @Override
@@ -70,12 +70,12 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
     }
 
     @Override
-    public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,HttpServletRequest req) {
+    public ResponseEntity<InterfaceApi> eliminareData(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            HttpServletRequest req) {
         Long idPrenotazione = Long.valueOf(req.getHeader("data"));
         Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
         prenotazioneService.eliminaData(prenotazione);
-        return new ResponseEntity<>(new ResponseOK("data cancellata con successo"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Data cancellata con successo"), HttpStatus.OK);
     }
-
 
 }

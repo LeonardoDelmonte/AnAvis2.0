@@ -17,16 +17,19 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestioneModuloInterface {
 
-    @GetMapping(value="/sede/ottieni-modulo-donatore/{email}")
-    public ResponseEntity<InterfaceApi> ottieniModuloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente , @PathVariable String email);
+    @GetMapping(value = "/sede/ottieni-modulo-donatore/{email}")
+    public ResponseEntity<InterfaceApi> ottieniModuloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @PathVariable String email);
 
-    @PutMapping(value="/sede/modifica-modulo-donatore")
-    public ResponseEntity<InterfaceApi> modificaModuloPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody ModuloPerTerzi moduloPerTerziDto);
+    @PutMapping(value = "/sede/modifica-modulo-donatore")
+    public ResponseEntity<InterfaceApi> modificaModuloPerTerzi(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @RequestBody ModuloPerTerzi moduloPerTerziDto);
 
-    @GetMapping(value="/donatore/gestione-modulo/ottieni-modulo")
+    @GetMapping(value = "/donatore/gestione-modulo/ottieni-modulo")
     public ResponseEntity<InterfaceApi> ottieniModulo(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
-    
-    @PutMapping(value="/donatore/gestione-modulo/modifica-modulo")
-    public ResponseEntity<InterfaceApi> modificareModulo(@AuthenticationPrincipal UtenteCorrente utenteCorrente,@RequestBody Modulo modulo);
-    
+
+    @PutMapping(value = "/donatore/gestione-modulo/modifica-modulo")
+    public ResponseEntity<InterfaceApi> modificareModulo(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @RequestBody Modulo modulo);
+
 }

@@ -37,7 +37,7 @@ public class GestioneProfilo implements GestioneProfiloInterface {
             DonatoreProfiloDto profilo) {
         Donatore donatore = donatoreService.findByEmail(utenteCorrente.getEmail());
         donatoreService.modificaProfilo(donatore, profilo);
-        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Profilo modificato con successo"), HttpStatus.OK);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GestioneProfilo implements GestioneProfiloInterface {
             SedeAvisProfiloDto profilo) {
         SedeAvis sedeAvis = sedeAvisService.findByEmail(utenteCorrente.getEmail());
         sedeAvisService.modificaProfilo(sedeAvis, profilo);
-        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Profilo modificato con successo"), HttpStatus.OK);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GestioneProfilo implements GestioneProfiloInterface {
             CentroTrasfusioneProfiloDto profilo) {
         CentroTrasfusione centro = centroTrasfusioneService.findByEmail(utenteCorrente.getEmail());
         centroTrasfusioneService.modificaProfilo(centro, profilo);
-        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseOK("Profilo modificato con successo"), HttpStatus.OK);
     }
 
     @Override

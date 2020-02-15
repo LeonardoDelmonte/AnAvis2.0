@@ -18,16 +18,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public interface GestioneCentroTrasfusioneInterface {
 
-    @GetMapping(value="/centro/ottieni-emergenze")
+    @GetMapping(value = "/centro/ottieni-emergenze")
     public ResponseEntity<InterfaceApi> ottieniEmergenze(@AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
-    @DeleteMapping(value="/centro/elimina-emergenze")
-    public ResponseEntity<InterfaceApi> eliminareEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente,HttpServletRequest req);
-    
-    @PostMapping(value="/centro/inserisci-emergenze")
-    public ResponseEntity<InterfaceApi> inserireEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente, @RequestBody String gruppo);
-    
-    @GetMapping(value="/vedi-richieste/conta-emergenze")
-    public @ResponseBody ResponseEntity<InterfaceApi> contaEmergenze(@AuthenticationPrincipal UtenteCorrente utenteCorrente); 
+    @DeleteMapping(value = "/centro/elimina-emergenze")
+    public ResponseEntity<InterfaceApi> eliminareEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            HttpServletRequest req);
+
+    @PostMapping(value = "/centro/inserisci-emergenze")
+    public ResponseEntity<InterfaceApi> inserireEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente,
+            @RequestBody String gruppo);
+
+    @GetMapping(value = "/vedi-richieste/conta-emergenze")
+    public @ResponseBody ResponseEntity<InterfaceApi> contaEmergenze(
+            @AuthenticationPrincipal UtenteCorrente utenteCorrente);
 
 }
