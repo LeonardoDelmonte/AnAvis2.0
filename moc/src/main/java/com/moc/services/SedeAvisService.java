@@ -1,7 +1,11 @@
 package com.moc.services;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -26,10 +30,27 @@ public class SedeAvisService implements SedeAvisInterface {
     private SedeAvisRepository sedeAvisRepository;
 
     @Override
-    public List<Prenotazione> ottieni(SedeAvis sedeAvis) {
+    public Map<String,List<Prenotazione>> ottieni(SedeAvis sedeAvis) {
         if(sedeAvis==null)
             throw new NullPointerException("sedeAvis NULL");
-        return sedeAvis.getListaPrenotazioni();
+        
+        return ottieniLibereEprenotate(sedeAvis);
+        
+    }
+
+    private Map<String,List<Prenotazione>> ottieniLibereEprenotate(SedeAvis sedeAvis){
+        List<Prenotazione> listaLibere = 
+            sedeAvis.getListaPrenotazioni().stream().
+                filter(e -> e.getIdDonatore() == null).collect(Collectors.toList());
+
+        List<Prenotazione> listaPrenotate = 
+            sedeAvis.getListaPrenotazioni().stream().
+                filter(e -> e.getIdDonatore() != null).collect(Collectors.toList());
+            
+        Map<String,List<Prenotazione>> map = new HashMap<>();
+        map.put("listaLibere",listaLibere); map.put("listaPrenotate",listaPrenotate);
+        
+        return map;
     }
 
     @Override

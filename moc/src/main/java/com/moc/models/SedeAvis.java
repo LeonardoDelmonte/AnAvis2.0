@@ -1,6 +1,5 @@
 package com.moc.models;
 
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.moc.models.Utente;
 
 import lombok.AllArgsConstructor;
@@ -44,6 +43,7 @@ public class SedeAvis extends Utente{
     private String indirizzo,telefono;
 
     @OneToMany(mappedBy="idSedeAvis",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"idSedeAvis"})
     private List<Prenotazione> listaPrenotazioni;
 
         

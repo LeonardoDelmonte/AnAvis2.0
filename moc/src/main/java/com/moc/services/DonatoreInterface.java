@@ -19,5 +19,6 @@ public interface DonatoreInterface {
     void isAbilitatoAdonare(Donatore donatore);
     void isModuloCompilato(Donatore donatore);
 	DonatoreProfiloDto ottieniProfilo(Donatore donatore);
+	void setAbilitazioneFalse(Donatore donatore);
 
 }

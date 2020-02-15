@@ -40,7 +40,7 @@ public class Prenotazione {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDonatore", referencedColumnName = "id")
-    @JsonIgnoreProperties({"id","password","ruolo","autorizzazioni","email"})
+    @JsonIgnoreProperties({"id","password","ruolo","autorizzazioni"})
     private Donatore idDonatore;
 
     @ManyToOne(fetch = FetchType.EAGER)

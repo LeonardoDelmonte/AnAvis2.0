@@ -54,7 +54,9 @@ public class GestionePrenotazione implements GestionePrenotazioneInterface {
         donatoreService.isModuloCompilato(donatore);
         donatoreService.isAbilitatoAdonare(donatore);
         Prenotazione prenotazione = prenotazioneService.findById(idPrenotazione);
-        return prenotazioneService.prenotaData(donatore, prenotazione);
+        prenotazione = prenotazioneService.prenotaData(donatore, prenotazione);
+        donatoreService.setAbilitazioneFalse(donatore);
+        return prenotazione;
     }
 
     @Override

@@ -72,14 +72,15 @@ class GestioneDateSede extends Component {
     getPrenotazioni = () => {
         GestioneSedeAvis.getPrenotazioni()
             .then(response => {
-                response.data.map.listaLibere.forEach(
+                console.log(response)
+                response.data.entity.listaLibere.forEach(
                     (x) => {
                         const myDate = new Date(x.date);
                         x["data"] = dateToString(myDate)
                         x["time"] = timeToString(myDate)
                     }
                 )
-                response.data.map.listaPrenotate.forEach(
+                response.data.entity.listaPrenotate.forEach(
                     (x) => {
                         const myDate = new Date(x.date);
                         x["data"] = dateToString(myDate)
@@ -87,8 +88,8 @@ class GestioneDateSede extends Component {
                     }
                 )
                 this.setState({
-                    listaPrenotate: response.data.map.listaPrenotate,
-                    listaLibere: response.data.map.listaLibere,
+                    listaPrenotate: response.data.entity.listaPrenotate,
+                    listaLibere: response.data.entity.listaLibere,
                 });
             })
             .catch(error => {

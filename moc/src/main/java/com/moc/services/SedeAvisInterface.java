@@ -1,6 +1,7 @@
 package com.moc.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.moc.dto.RangeDateDto;
@@ -15,7 +16,7 @@ public interface SedeAvisInterface {
 
     void elimina(Prenotazione prenotazione);
     void modifica(Prenotazione prenotazione);
-    List<Prenotazione> ottieni(SedeAvis sedeAvis);
+    Map<String,List<Prenotazione>> ottieni(SedeAvis sedeAvis);
     SedeAvis findByEmail(String email);
     SedeAvis findByComune(String comune);
 	void modificaProfilo(SedeAvis sedeAvis, SedeAvisProfiloDto profilo);

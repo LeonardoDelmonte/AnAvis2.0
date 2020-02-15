@@ -44,9 +44,9 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
 
         SedeAvis sedeAvis = sedeAvisService.findByEmail(utenteCorrente.getEmail());
 
-        List<Prenotazione> list = sedeAvisService.ottieni(sedeAvis);
+        Map<String,List<Prenotazione>> map = sedeAvisService.ottieni(sedeAvis);
 
-        return new ResponseEntity<>(new ResponseCustomEntity<List<Prenotazione>>(list), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<Map<String,List<Prenotazione>>>(map), HttpStatus.OK);
     }
 
     @Override
