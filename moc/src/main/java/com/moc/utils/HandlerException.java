@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.security.authentication.BadCredentialsException;
 import java.util.NoSuchElementException;
+
+import javax.naming.AuthenticationException;
+
 import org.springframework.dao.DataIntegrityViolationException;
 
 
@@ -53,6 +56,11 @@ public class HandlerException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     protected ResponseEntity<InterfaceApi> NoSuchElementException(NoSuchFieldException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.NOT_ACCEPTABLE, ex));
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    protected ResponseEntity<InterfaceApi> AuthenticationException(AuthenticationException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex));
     }
 
 

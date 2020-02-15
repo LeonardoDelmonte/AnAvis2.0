@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="prenotazioni",uniqueConstraints = @UniqueConstraint(columnNames={"date"}))
+@Table(name="prenotazioni",uniqueConstraints = @UniqueConstraint(columnNames={"date","idSedeAvis"}))
 public class Prenotazione {
 
     @Column(name = "id")

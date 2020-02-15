@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class UtenteService implements UserDetailsService {
             authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 authDto.getEmail(), authDto.getPassword()));
-        }catch(BadCredentialsException e){
+        }catch(AuthenticationException e){
             throw new BadCredentialsException("credenziali errate");
         }
     }
