@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+//Components
 import { compose } from "recompose"
 import {
   withScriptjs,
@@ -8,6 +9,10 @@ import {
   InfoWindow
 } from "react-google-maps"
 import Geocode from "react-geocode";
+
+//Services
+import MapsServices from '../../utils/Maps';
+
 Geocode.setLanguage("it");
 Geocode.setApiKey("AIzaSyCRfaW0Kx2El3bVuYiB4DYZ5i2w_vsKoDM");
 
@@ -48,26 +53,34 @@ export default class ShelterMap extends Component {
 
   componentDidMount() {
 
-    Geocode.fromAddress("Morrovalle asjhdasdasdgjhasgdjhsgda gjhgdsygasy").then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
-        var aaa = []
-        aaa[0] = {
-          shelter: "Via della riviera Porto Potenza Picena",
-          longitude: lng,
-          latitude: lat
-        }
+    MapsServices.ottieniComuni()
+    .then(response => {
+        this.setState({ utente: response.data.entity });
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+    // Geocode.fromAddress("Morrovalle asjhdasdasdgjhasgdjhsgda gjhgdsygasy").then(
+    //   response => {
+    //     const { lat, lng } = response.results[0].geometry.location;
+    //     console.log(lat, lng);
+    //     var aaa = []
+    //     aaa[0] = {
+    //       shelter: "Via della riviera Porto Potenza Picena",
+    //       longitude: lng,
+    //       latitude: lat
+    //     }
 
 
-        this.setState({ shelters: aaa }, () => {
-          console.log(this.state.shelters)
-        })
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    //     this.setState({ shelters: aaa }, () => {
+    //       console.log(this.state.shelters)
+    //     })
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   }
+    // );
 
 
     // console.log(this.state.shelters)
