@@ -6,16 +6,16 @@ class ModuloService {
         return await axiosInstance.put('/donatore/gestione-modulo/modifica-modulo', modulo)
     }
 
-    async modificaModuloSede(modulo) {
-        return await axiosInstance.put('/sede/gestione-modulo/modifica-modulo', modulo)
+    async modificaModuloSede(moduloPerTerzi) {
+        return await axiosInstance.put('/sede/modifica-modulo-donatore', moduloPerTerzi)
     }
 
-    async loadModuloDonatore(email) {
-        return await axiosInstance.get('/donatore/gestione-modulo/ottieni-modulo/' + email)
+    async loadModuloDonatore() {
+        return await axiosInstance.get('/donatore/gestione-modulo/ottieni-modulo/')
     }
     
     async loadModuloSede(email) {
-        return await axiosInstance.get('/sede/gestione-modulo/ottieni-modulo/' + email)
+        return await axiosInstance.get('/sede/ottieni-modulo-donatore/' + email)
     }
 }
 

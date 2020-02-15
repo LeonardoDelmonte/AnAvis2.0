@@ -2,6 +2,7 @@ package com.moc.services;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import com.moc.dto.RangeDateDto;
 import com.moc.models.Donatore;
@@ -13,7 +14,7 @@ import com.moc.models.SedeAvis;
  */
 public interface PrenotazioneInterface {
 
-    List<Timestamp> salvaListaDate(List<Timestamp> list,SedeAvis sedeAvis);
+    Map<String,List<Timestamp>> salvaListaDate(List<Timestamp> list,SedeAvis sedeAvis);
 
     Prenotazione findById(Long id);
 

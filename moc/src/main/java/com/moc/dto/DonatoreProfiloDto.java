@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class DonatoreProfiloDto {
 
-    private String nome,cognome,professione,citta;
+    private String nome,cognome,professione,citta,email;
 
     private int anni;
     

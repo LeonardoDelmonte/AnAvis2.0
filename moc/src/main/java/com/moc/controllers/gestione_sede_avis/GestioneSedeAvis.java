@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.moc.components.ControllaDate;
@@ -55,9 +57,9 @@ public class GestioneSedeAvis implements GestioneSedeAvisInterface {
 
         List<Timestamp> list = controllaDate.formattaRangeDate(rangeDateDto);
 
-        list = prenotazioneService.salvaListaDate(list, sedeAvis);
+        Map<String,List<Timestamp>> map = prenotazioneService.salvaListaDate(list, sedeAvis);
 
-        return new ResponseEntity<>(new ResponseCustomEntity<List<Timestamp>>(list), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseCustomEntity<Map<String,List<Timestamp>>>(map), HttpStatus.OK);
     }
 
     @Override

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 //Services
-import GestioneDateService from "../../utils/GestioneDateService";
+import GestioneSedeAvis from "../../utils/GestioneSedeAvis";
 //-----Helpers
 import { dateToString, timeToString, ShowSimpleAlert, isSede } from '../../utils/helpers'
 
@@ -70,7 +70,7 @@ class GestioneDateSede extends Component {
     }
 
     getPrenotazioni = () => {
-        GestioneDateService.getPrenotazioni()
+        GestioneSedeAvis.getPrenotazioni()
             .then(response => {
                 response.data.map.listaLibere.forEach(
                     (x) => {
@@ -98,7 +98,7 @@ class GestioneDateSede extends Component {
 
     handleButtonClickLibere = (state) => {
         console.log(state)
-        GestioneDateService.deleteDate(state.target.id)
+        GestioneSedeAvis.deleteDate(state.target.id)
             .then(
                 response => {
                     if (response.data) {
@@ -117,7 +117,7 @@ class GestioneDateSede extends Component {
 
     handleButtonClickPrenotate = (state) => {
         console.log(state.target.id)
-        GestioneDateService.deleteDate(state.target.id)
+        GestioneSedeAvis.deleteDate(state.target.id)
             .then(
                 response => {
                     if (response.data) {

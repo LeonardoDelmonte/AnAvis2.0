@@ -3,9 +3,11 @@ package com.moc.controllers.gestione_profilo;
 import com.moc.dto.CentroTrasfusioneProfiloDto;
 import com.moc.dto.DonatoreProfiloDto;
 import com.moc.dto.SedeAvisProfiloDto;
+import com.moc.models.CentroTrasfusione;
 import com.moc.models.Donatore;
 import com.moc.models.SedeAvis;
 import com.moc.security.UtenteCorrente;
+import com.moc.services.CentroTrasfusioneInterface;
 import com.moc.services.DonatoreInterface;
 import com.moc.services.SedeAvisInterface;
 import com.moc.utils.InterfaceApi;
@@ -27,8 +29,8 @@ public class GestioneProfilo implements GestioneProfiloInterface {
     private DonatoreInterface donatoreService;
     @Autowired
     private SedeAvisInterface sedeAvisService;
-    //@Autowired
-    //private CentroTrasfusioneInterface centroTrasfusioneService;
+    @Autowired
+    private CentroTrasfusioneInterface centroTrasfusioneService;
 
     @Override
     public ResponseEntity<InterfaceApi> modificareProfiloDonatore(UtenteCorrente utenteCorrente,
@@ -49,8 +51,9 @@ public class GestioneProfilo implements GestioneProfiloInterface {
     @Override
     public ResponseEntity<InterfaceApi> modificareProfiloCentroTrasfusione(UtenteCorrente utenteCorrente,
             CentroTrasfusioneProfiloDto profilo) {
-        // TODO Auto-generated method stub
-        return null;
+        CentroTrasfusione centro = centroTrasfusioneService.findByEmail(utenteCorrente.getEmail());
+        centroTrasfusioneService.modificaProfilo(centro,profilo);
+        return new ResponseEntity<>(new ResponseOK("profilo modificato con successo"),HttpStatus.OK);
     }
 
     @Override
@@ -70,8 +73,9 @@ public class GestioneProfilo implements GestioneProfiloInterface {
 
     @Override
     public ResponseEntity<InterfaceApi> ottenereProfiloCentroTrasfusione(UtenteCorrente utenteCorrente) {
-        // TODO Auto-generated method stub
-        return null;
+        CentroTrasfusione centro = centroTrasfusioneService.findByEmail(utenteCorrente.getEmail());
+        CentroTrasfusioneProfiloDto profilo = centroTrasfusioneService.ottieniProfilo(centro);
+        return new ResponseEntity<>(new ResponseCustomEntity<CentroTrasfusioneProfiloDto>(profilo), HttpStatus.OK);
     }
 
     

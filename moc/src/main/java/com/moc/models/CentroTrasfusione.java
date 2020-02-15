@@ -37,13 +37,9 @@ public class CentroTrasfusione extends Utente{
     //@JoinColumn(name="shop_owned_id",nullable=true)
     
     @Column
-    private String direttore;
+    private String direttore,indirizzo,telefono;
     @Column
-    private String regione;
-    @Column
-    private String provincia;
-    @Column
-    private String comune;
+    private String regione,provincia,comune;
 
     @OneToMany(mappedBy="idCentroTrasfusione",fetch = FetchType.LAZY)
     private List<Emergenza> listaEmergenze;

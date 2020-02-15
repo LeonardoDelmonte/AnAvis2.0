@@ -72,6 +72,7 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/donatore/**").hasAuthority("donatore").and().authorizeRequests()
 				.antMatchers("/centro/**").hasAuthority("centroTrasfusione").and().authorizeRequests()
 				.antMatchers("/prenotazione/**").hasAuthority("prenotazione").and().authorizeRequests()
+				.antMatchers("/vedi-richieste/**").hasAuthority("vedi-richieste").and().authorizeRequests()
 				.antMatchers("/admin/**").hasAuthority("admin").and().authorizeRequests().and()
 				// definisco un ExceptionEntryPoint 
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()

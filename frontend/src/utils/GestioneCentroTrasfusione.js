@@ -16,8 +16,8 @@ class GestioneCentroTrasfusione {
           )
     }
 
-    async getCountRichieste(){
-        return await axiosInstance.get('/centro/conta-emergenze')
+    async GetCountRichieste(){
+        return await axiosInstance.get('/vedi-richieste/conta-emergenze')
     }
     
 }

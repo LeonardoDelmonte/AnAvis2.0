@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface GestioneModuloInterface {
 
-    @GetMapping(value="/sede/ottieni-modulo-donatore")
+    @GetMapping(value="/sede/ottieni-modulo-donatore/{email}")
     public ResponseEntity<InterfaceApi> ottieniModuloDonatore(@AuthenticationPrincipal UtenteCorrente utenteCorrente , @PathVariable String email);
 
     @PutMapping(value="/sede/modifica-modulo-donatore")

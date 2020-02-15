@@ -5,7 +5,7 @@ import Button from '../FormComponents/Button'
 //Services
 import ProfiloService from '../../utils/ProfiloService';
 //Helpers
-import { ShowSimpleAlert, isDonatore} from '../../utils/helpers'
+import { ShowSimpleAlert, isDonatore , isSede , isCentro} from '../../utils/helpers'
 
 class Profilo extends Component {
 
@@ -31,24 +31,66 @@ class Profilo extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        var utente = { [this.state.fields.ruolo]: this.state.fields };
-        ProfiloService.updateProfilo(utente)
-            .then(response => {
-                ShowSimpleAlert(response.data.message)
-            })
-            .catch(error => {
-                ShowSimpleAlert(error.response.data.message)
-            });
+        var utente = this.state.fields ;
+        if(isDonatore()){
+            console.log(utente);
+            ProfiloService.updateProfiloDonatore(utente)
+                .then(response => {
+                    ShowSimpleAlert(response.data.message)
+                })
+                .catch(error => {
+                    ShowSimpleAlert(error.response.data.message)
+                });
+        }
+        if(isSede()){
+            ProfiloService.updateProfiloSede(utente)
+                .then(response => {
+                    ShowSimpleAlert(response.data.message)
+                })
+                .catch(error => {
+                    ShowSimpleAlert(error.response.data.message)
+                });
+        }
+        if(isCentro()){
+            ProfiloService.updateProfiloCentro(utente)
+                .then(response => {
+                    ShowSimpleAlert(response.data.message)
+                })
+                .catch(error => {
+                    ShowSimpleAlert(error.response.data.message)
+                });
+        }
     };
 
     componentDidMount() {
-        ProfiloService.loadProfilo()
+        if(isDonatore()){
+            ProfiloService.loadProfiloDonatore()
             .then(response => {
-                this.setState({ fields: response.data.utente });
+                this.setState({ fields: response.data.entity });
             })
             .catch(error => {
                 console.log("nessuna risposta dal server");
             });
+        }
+        if(isSede()){
+            ProfiloService.loadProfiloSede()
+            .then(response => {
+                this.setState({ fields: response.data.entity });
+            })
+            .catch(error => {
+                console.log("nessuna risposta dal server");
+            });
+        }
+        if(isCentro()){
+            ProfiloService.loadProfiloCentro()
+            .then(response => {
+                this.setState({ fields: response.data.entity });
+            })
+            .catch(error => {
+                console.log("nessuna risposta dal server");
+            });
+        }
+        
     }
 
     render() {
@@ -70,14 +112,14 @@ class Profilo extends Component {
                     < Input label="Email" type="text" id="email" name="email" value={this.state.fields.email} onChange={this.handleChange} required />
                 }
                 {/*campi solo donatore */}
-                {this.state.fields && this.state.fields.ruolo === "donatore" &&
+                {this.state.fields && isDonatore() &&
                     <div>
                         <Input label="Nome" type="text" id="nome" name="nome" value={this.state.fields.nome} onChange={this.handleChange} required />
                         <Input label="Cognome" type="text" id="cognome" name="cognome" value={this.state.fields.cognome} onChange={this.handleChange} required />
                     </div>
                 }
                 {/*campi SedeAvis e centroTrasfusione */}
-                {this.state.fields && (this.state.fields.ruolo === "sedeAvis" || this.state.fields.ruolo === "centroTrasfusione") &&
+                {this.state.fields && (isSede() || isCentro()) &&
                     <div>
                         <Input label="Regione" type="text" id="regione" name="regione" value={this.state.fields.regione} onChange={this.handleChange} required />
                         <Input label="Provincia" type="text" id="provincia" name="provincia" value={this.state.fields.provincia} onChange={this.handleChange} required />
@@ -86,13 +128,13 @@ class Profilo extends Component {
                     </div>
                 }
                 {/*campi SedeAvis */}
-                {this.state.fields && this.state.fields.ruolo === "sedeAvis" &&
+                {this.state.fields && isSede() &&
                     <div>
                         <Input label="Telefono" type="text" id="telefono" name="telefono" value={this.state.fields.telefono} onChange={this.handleChange} required />
                     </div>
                 }
                 {/*campi centroTrasfusione*/}
-                {this.state.fields && this.state.fields.ruolo === "centroTrasfusione" &&
+                {this.state.fields && isCentro() &&
                     <div>
                         <Input label="Direttore" type="text" id="direttore" name="direttore" value={this.state.fields.direttore} onChange={this.handleChange} required />
                         <Input label="Ospedale" type="text" id="ospedale" name="ospedale" value={this.state.fields.ospedale} onChange={this.handleChange} required />

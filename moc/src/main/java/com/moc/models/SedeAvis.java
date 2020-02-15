@@ -39,11 +39,10 @@ public class SedeAvis extends Utente{
 
     
     @Column
-    private String regione;
+    private String regione,comune,provincia;
     @Column
-    private String provincia;
-    @Column
-    private String comune;
+    private String indirizzo,telefono;
+
     @OneToMany(mappedBy="idSedeAvis",fetch = FetchType.LAZY)
     private List<Prenotazione> listaPrenotazioni;
 

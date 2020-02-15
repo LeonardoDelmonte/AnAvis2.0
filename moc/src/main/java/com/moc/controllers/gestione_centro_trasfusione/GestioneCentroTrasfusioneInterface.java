@@ -27,7 +27,7 @@ public interface GestioneCentroTrasfusioneInterface {
     @PostMapping(value="/centro/inserisci-emergenze")
     public ResponseEntity<InterfaceApi> inserireEmergenza(@AuthenticationPrincipal UtenteCorrente utenteCorrente, @RequestBody String gruppo);
     
-    @GetMapping(value="/centro/conta-emergenze")
+    @GetMapping(value="/vedi-richieste/conta-emergenze")
     public @ResponseBody ResponseEntity<InterfaceApi> contaEmergenze(@AuthenticationPrincipal UtenteCorrente utenteCorrente); 
 
 }

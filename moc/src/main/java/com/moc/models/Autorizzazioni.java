@@ -14,6 +14,7 @@ public class Autorizzazioni {
 
     public Autorizzazioni(){
         this.autorizzazioni = new ArrayList<>();
+        this.autorizzazioni.add(new SimpleGrantedAuthority("vedi-richieste"));
     }
 
     public void autorizzazioniDonatore(){

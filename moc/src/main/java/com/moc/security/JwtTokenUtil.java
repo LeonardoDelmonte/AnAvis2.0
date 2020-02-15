@@ -84,12 +84,16 @@ public class JwtTokenUtil implements Serializable {
 	}
 
 	public UserDetails getUserDetails(String token){
-		return UtenteCorrente.builder()
+		try{
+			return UtenteCorrente.builder()
 								.id(getIdFromToken(token))
 								.email(getEmailFromToken(token))
 								.ruolo(getRoleFromToken(token))
 								.autorizzazioni(getAuthFromToken(token))
 								.build();
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 }

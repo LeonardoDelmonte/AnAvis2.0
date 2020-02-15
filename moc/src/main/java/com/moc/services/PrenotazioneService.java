@@ -2,8 +2,11 @@ package com.moc.services;
 
 import java.security.InvalidParameterException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
@@ -27,25 +30,30 @@ public class PrenotazioneService implements PrenotazioneInterface {
     private PrenotazioneRepository prenotazioneRepository;
 
     @Override
-    public List<Timestamp> salvaListaDate(List<Timestamp> list, SedeAvis sedeAvis) {
+    public Map<String,List<Timestamp>> salvaListaDate(List<Timestamp> list, SedeAvis sedeAvis) {
         if (list.isEmpty() || sedeAvis == null)
             throw new NullPointerException("argomento passato NULL");
 
-        return inserisciDataLibera(sedeAvis, list);
+        return inserisciDateLibere(sedeAvis, list);
     }
 
     // ritorna la lista con le date inserite oppure ritorniamo una mappa di ok e
     // error dopo vedemo
-    private List<Timestamp> inserisciDataLibera(SedeAvis sedeAvis, List<Timestamp> listTimestamp) {
+    private Map<String,List<Timestamp>> inserisciDateLibere(SedeAvis sedeAvis, List<Timestamp> listTimestamp) {
+        List<Timestamp> listError = new ArrayList<>();
+        List<Timestamp> listOK = new ArrayList<>();
         for (int i = 0; i < listTimestamp.size(); i++) {
             try {
                 prenotazioneRepository
                         .save(Prenotazione.builder().date(listTimestamp.get(i)).idSedeAvis(sedeAvis).build());
+                listOK.add(listTimestamp.get(i));
             } catch (DataIntegrityViolationException e) {
-                listTimestamp.remove(i);
+                listError.add(listTimestamp.get(i));
             }
         }
-        return listTimestamp;
+        Map<String,List<Timestamp>> map = new HashMap<>();
+        map.put("ListOK",listOK); map.put("ListError",listError);
+        return map;
     }
 
     @Override

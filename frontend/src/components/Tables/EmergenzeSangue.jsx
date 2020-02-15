@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 import { ShowSimpleAlert } from '../../utils/helpers'
 //Services
-import CentroTrasfusioneService from "../../utils/CentroTrasfusioneService";
+import GestioneCentroTrasfusione from "../../utils/GestioneCentroTrasfusione";
 //-----Helpers
 import {dateToString} from '../../utils/helpers'
 
@@ -41,7 +41,7 @@ class EmergenzeSangue extends Component {
     }
 
     getEmergency = () =>{
-        CentroTrasfusioneService.getEmergency()
+        GestioneCentroTrasfusione.getEmergency()
             .then(response => {
                 response.data.list.forEach(
                     (x) => {
@@ -57,7 +57,7 @@ class EmergenzeSangue extends Component {
 
     handleButtonClick = (state) => {
         console.log(state.target.id)
-        CentroTrasfusioneService.deleteEmergenze(state.target.id)
+        GestioneCentroTrasfusione.deleteEmergenze(state.target.id)
             .then(
                 response => {
                     if (response.data) {

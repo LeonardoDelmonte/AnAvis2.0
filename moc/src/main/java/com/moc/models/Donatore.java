@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.moc.models.Utente;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,9 +50,10 @@ public class Donatore extends Utente{
     private Boolean abilitaDonazione;
 
     @OneToMany(mappedBy="idDonatore",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"idDonatore"})
     private List<Prenotazione> listaPrenotazioni;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idModulo", referencedColumnName = "id")
     private Modulo modulo;
 

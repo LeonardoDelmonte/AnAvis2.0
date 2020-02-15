@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import memoize from 'memoize-one';
 //Services
-import GestioneDateService from "../../utils/GestioneDateService";
+import GestioneDonatore from "../../utils/GestioneDonatore";
 //-----Helpers
 import { dateToString, timeToString, ShowSimpleAlert} from '../../utils/helpers'
 
@@ -50,10 +50,10 @@ class GestioneDateDonatore extends Component {
     }
 
     getPrenotazioni = () => {
-        GestioneDateService.getPrenotazioniDonatore()
+        GestioneDonatore.ottieniDate()
             .then(response => {
                 console.log(response)
-                response.data.list.forEach(
+                response.data.entity.forEach(
                     (x) => {
                         const myDate = new Date(x.date);
                         x["data"] = dateToString(myDate)
@@ -62,7 +62,7 @@ class GestioneDateDonatore extends Component {
                     }
                 )
                 this.setState({
-                    listaPrenotate: response.data.list,
+                    listaPrenotate: response.data.entity,
                 });
             })
             .catch(error => {
@@ -71,7 +71,7 @@ class GestioneDateDonatore extends Component {
     }
 
     handleButtonClick = (state) => {
-        GestioneDateService.deleteDateDonatore(state.target.id)
+        GestioneDonatore.eliminaPrenotazione(state.target.id)
             .then(
                 response => {
                     if (response.data) {

@@ -3,6 +3,7 @@ import React from 'react';
 function ResultInserDate(props) {
     return (
         <div>
+        {console.log(props)}
             {props.listError && props.listOK &&
                 <p>
                 Si sono verificati <b>{props.listError.length} </b>errori 
