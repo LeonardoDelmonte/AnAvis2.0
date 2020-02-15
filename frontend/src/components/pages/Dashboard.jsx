@@ -5,6 +5,7 @@ import {isDonatore, isCentro , isSede} from '../../utils/helpers';
 //Components
 import Istogramma from '../Graphics/Istogramma';
 import News from '../Other/News';
+import Maps from '../Other/Maps';
 
 class Dashboard extends Component {
 
@@ -54,6 +55,7 @@ class Dashboard extends Component {
                     {this.state.utente && isDonatore() && <h3>DONATORE {(this.state.utente.nome + " " + this.state.utente.cognome).toUpperCase()}</h3>}
                     {this.state.utente && isSede()     && <h3>SEDE AVIS DI {(this.state.utente.comune).toUpperCase()}</h3>}
                     {this.state.utente && isCentro() &&  <h3>CENTRO TRASFUSIONE DI  {(this.state.utente.comune).toUpperCase()}</h3>}
+                    <Maps />
                     <Istogramma />
                     <News />
                 </div>
